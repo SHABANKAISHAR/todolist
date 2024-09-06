@@ -30,7 +30,9 @@ const List=mongoose.model("List",listSchema);
 main().catch(err => console.log(err));
 
 async function main() {
-  await mongoose.connect('mongodb+srv://shabaankaishar:Shab97086@cluster0.elevj.mongodb.net/todolistDB');
+  await mongoose.connect('mongodb+srv://shabaankaishar:Shab97086@cluster0.elevj.mongodb.net/todolistDB')
+  .then(() => console.log('MongoDB connected successfully'))
+  .catch(err => console.error('MongoDB connection error:', err));
 
   // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
   
