@@ -34,7 +34,7 @@ async function main() {
 
   // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
   
-  
+}
   const item1 = new Item({
     name: "Welcome to your todolist!"
   });
@@ -50,7 +50,7 @@ async function main() {
   defaultItems = [item1, item2, item3];
  
   
-}
+
 
 
 
