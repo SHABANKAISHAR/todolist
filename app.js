@@ -62,7 +62,7 @@ app.get("/", async function(req, res) {
    const foundItems=await Item.find({});
    if(foundItems.length===0){
     await Item.insertMany(defaultItems);
-    res.render("/");
+    res.redirect("/");
    }else{
     res.render("list", {listTitle: "Today", newListItems: foundItems});
    }
@@ -76,7 +76,7 @@ app.get("/:customListName", async function(req,res){
           name:customListName,
           items:defaultItems
         });
-        list.save();
+        await list.save();
         res.redirect("/"+customListName);
     }
     else{
@@ -113,7 +113,8 @@ app.post("/delete",async function(req,res){
   console.log("Successfully saved default items to DB");
   res.redirect("/");
   }else{
-    List.findOneAndUpdate({name:listName},{$pull:{items:{_id:checkedItemId}}}).then(()=>res.redirect("/"+listName)).catch((err)=>{console.log(err);})
+   await List.findOneAndUpdate({name:listName},{$pull:{items:{_id:checkedItemId}}});
+   res.redirect("/"+listName);
      
   }
 });
